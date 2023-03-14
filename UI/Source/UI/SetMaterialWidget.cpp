@@ -3,14 +3,14 @@
 
 #include "SetMaterialWidget.h"
 
-#include "GamePlayerController.h"
+#include "MenuPlayerController.h"
 #include "Kismet/GameplayStatics.h"
 
 void USetMaterialWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 	PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
-	AGamePlayerController * PC = Cast<AGamePlayerController>(PlayerController);
+	AMenuPlayerController * PC = Cast<AMenuPlayerController>(PlayerController);
 	PC->OnMouseButtonUp.AddUObject(this, &USetMaterialWidget::OnMouseButtonUp);
 }
 
@@ -20,6 +20,7 @@ const FPointerEvent& InMouseEvent)
 	if (InMouseEvent.IsMouseButtonDown(EKeys::LeftMouseButton))
 	{
 		//DraggedActor = GetWorld()->SpawnActor<AActor>(DraggedActorClass);
+		UE_LOG(LogTemp, Warning, TEXT("MouseButtonDown"))
 	}
 	return FReply::Handled();
 }

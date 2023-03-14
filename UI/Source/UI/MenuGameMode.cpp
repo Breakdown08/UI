@@ -3,19 +3,14 @@
 
 #include "MenuGameMode.h"
 
-#include "GamePlayerController.h"
 #include "MenuHUD.h"
 #include "MenuPlayerController.h"
 
-void AMenuGameMode::SetPlayerController(TSubclassOf<APlayerController> PlayerController)
-{
-	PlayerControllerClass = PlayerController;
-}
 
 AMenuGameMode::AMenuGameMode()
 {
-	static ConstructorHelpers::FClassFinder<AMenuHUD> HUDObjectFinder(TEXT("Blueprint'/Game/Core/Widgets/WBP_MenuHUD'"));
-	PlayerControllerClass = AGamePlayerController::StaticClass();
-	//HUDClass = AMenuHUD::StaticClass();
+	static ConstructorHelpers::FClassFinder<AMenuHUD>
+		HUDObjectFinder(TEXT("Blueprint'/Game/Core/Widgets/WBP_MenuHUD'"));
+	PlayerControllerClass = AMenuPlayerController::StaticClass();
 	HUDClass = HUDObjectFinder.Class;
 }

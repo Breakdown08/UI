@@ -13,8 +13,6 @@ UCLASS()
 class UI_API AMenuGameMode : public AGameMode
 {
 	GENERATED_BODY()
-public:
-	void SetPlayerController(TSubclassOf<APlayerController> PlayerController);
 protected:
 	AMenuGameMode();
 	

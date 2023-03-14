@@ -61,7 +61,7 @@ void AMenuHUD::ShowDraggableMenu()
 		if (PlayerOwner)
 		{
 			PlayerOwner->bShowMouseCursor = true;
-			PlayerOwner->SetInputMode(FInputModeUIOnly());
+			PlayerOwner->SetInputMode(FInputModeGameOnly());
 		}
 	}
 }

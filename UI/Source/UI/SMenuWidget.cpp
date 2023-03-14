@@ -99,10 +99,6 @@ FReply SMenuWidget::OnPlayClicked() const
 	if (OwningHUD.IsValid())
 	{
 		OwningHUD->RemoveMenu();
-		OwningHUD->ShowDraggableMenu();
-		TSubclassOf<APlayerController> PC = OwningHUD->GetMainGameInstance()->GamePlayerController;
-		OwningHUD->GetMainGameInstance()->SetPlayerController(PC);
-		UE_LOG(LogPlayerController, Warning, TEXT("123"));
 	}
 	return FReply::Handled();
 }

@@ -19,14 +19,6 @@ public:
 
 	/** Constructs this widget with InArgs */
 	void Construct(const FArguments& InArgs);
-
-	virtual FReply OnMouseButtonDown(const FGeometry& MyGeometry,
-	const FPointerEvent& MouseEvent) override;
-	virtual FReply OnDragDetected(const FGeometry& MyGeometry,
-	const FPointerEvent& MouseEvent) override;
-	virtual FReply OnMouseButtonUp(const FGeometry& MyGeometry,
-	const FPointerEvent& MouseEvent) override;
-	virtual FReply OnDrop(const FGeometry& MyGeometry,
-	const FDragDropEvent& DragDropEvent) override;
 	TWeakObjectPtr<class AMenuHUD> OwningHUD;
 };
+

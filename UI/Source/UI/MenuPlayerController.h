@@ -14,9 +14,14 @@ class UI_API AMenuPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 public:
+	AMenuPlayerController(const FObjectInitializer & Obj);
+	FSimpleMulticastDelegate OnMouseButtonUp;
 	void OpenMenu();
 	void Test();
 protected:
-	AMenuPlayerController();
 	virtual void SetupInputComponent() override;
+	void OnLeftMouseButtonUp();
+	void ShowMaterialsPanel();
+private:
+	bool IsMaterialsPanelOpened = false;
 };

@@ -5,8 +5,11 @@
 
 #include "MenuHUD.h"
 
-AMenuPlayerController::AMenuPlayerController()
+AMenuPlayerController::AMenuPlayerController(
+const FObjectInitializer & Obj): Super(Obj)
 {
+	bShowMouseCursor = true;
+	bEnableClickEvents = true;
 }
 
 void AMenuPlayerController::SetupInputComponent()
@@ -14,9 +17,37 @@ void AMenuPlayerController::SetupInputComponent()
 	Super::SetupInputComponent();
 	if (InputComponent)
 	{
+		InputComponent->BindAction("ShowMaterialsPanel", IE_Pressed, this, &AMenuPlayerController::ShowMaterialsPanel);
 		InputComponent->BindAction("OpenMenu", IE_Pressed, this, &AMenuPlayerController::OpenMenu);
 		InputComponent->BindAction("Test", IE_Pressed, this, &AMenuPlayerController::Test);
 	}
+}
+
+void AMenuPlayerController::OnLeftMouseButtonUp()
+{
+	if (OnMouseButtonUp.IsBound())
+	{
+		OnMouseButtonUp.Broadcast();
+	}
+}
+
+void AMenuPlayerController::ShowMaterialsPanel()
+{
+	if (!IsMaterialsPanelOpened)
+	{
+		if (AMenuHUD* MenuHUD = Cast<AMenuHUD>(GetHUD()))
+		{
+			MenuHUD->ShowDraggableMenu();
+		}
+	}
+	else
+	{
+		if (AMenuHUD* MenuHUD = Cast<AMenuHUD>(GetHUD()))
+		{
+			MenuHUD->RemoveDraggableMenu();
+		}
+	}
+	IsMaterialsPanelOpened = !IsMaterialsPanelOpened;
 }
 
 void AMenuPlayerController::OpenMenu()
@@ -29,5 +60,5 @@ void AMenuPlayerController::OpenMenu()
 
 void AMenuPlayerController::Test()
 {
-	UE_LOG(LogTemp, Warning, TEXT("МЕНЮ КОНТРОЛЛЕР"));
+	UE_LOG(LogTemp, Warning, TEXT("ТЕСТ КНОПКА"));
 }
